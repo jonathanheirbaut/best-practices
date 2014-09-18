@@ -22,6 +22,10 @@ public class PartyBean implements Serializable {
     public PartyBean() {
     }
 
+    public void delete(Party party){
+        partyService.delete(party);
+    }
+
     public List<Party> parties(){
         return partyService.getParties();
     }

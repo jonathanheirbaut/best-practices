@@ -28,5 +28,10 @@ public class PartyServiceImpl implements Serializable, PartyService{
         return partyRepository.getParties();
     }
 
+    @Override
+    public void delete(Party party) {
+        partyRepository.deleteParty(party);
+    }
+
 
 }

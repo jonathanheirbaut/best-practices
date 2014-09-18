@@ -21,33 +21,44 @@
     </h:form>
 
 
-    <h:form>
+    <h:form id="form">
         <p:dataTable id="partiesTable" var="p" value="#{partyBean.parties()}">
             <p:column headerText="Details" style="width:16px">
                 <p:rowToggler/>
-            </p:column>
-
-
-            <p:column headerText="Artist">
-                <h:outputText value="#{p.artist}"/>
             </p:column>
 
             <p:column headerText="Name">
                 <h:outputText value="#{p.name}"/>
             </p:column>
 
-            <p:column headerText="Location">
-                <h:outputText value="#{p.location}"/>
+
+            <p:column headerText="Date">
+                <h:outputText value="#{p.startDate}" />
             </p:column>
 
-            <p:column headerText="Tickets">
-                <h:outputText value="#{p.tickets}"/>
+            <p:column width="50px" headerText="Tools">
+                <p:commandButton action="#{newPartyBean.update(p)}" rendered="#{userBean.admin}" icon="ui-icon-pencil" update=":form"/>
+                <p:commandButton action="#{partyBean.delete(p)}" rendered="#{userBean.admin}" icon="ui-icon-trash" update=":form"/>
             </p:column>
+
 
             <p:rowExpansion>
                 <p:dataTable var="p2" value="#{p}">
+
+                    <p:column headerText="Location">
+                        <h:outputText value="#{p2.location}"/>
+                    </p:column>
+
+                    <p:column headerText="Artist">
+                        <h:outputText value="#{p2.artist}"/>
+                    </p:column>
+
+                    <p:column headerText="Tickets">
+                        <h:outputText value="#{p2.numberOfTickets}"/>
+                    </p:column>
+
                     <p:column headerText="Min Age">
-                        <h:outputText value="#{p2.age}"/>
+                        <h:outputText value="#{p2.minimumAge}"/>
                     </p:column>
                     <p:column headerText="Price">
                         <h:outputText value="#{p2.price}"/>
@@ -58,7 +69,7 @@
 
         </p:dataTable>
 
-        <h:link value="Add party" outcome="add" rendered="#{userBean.admin}"/>
+        <p:button value="Add party" outcome="add" rendered="#{userBean.admin}"/>
 
         <p:commandButton value="Export to Excel" ajax="false">
             <p:dataExporter type="xls" target="partiesTable" fileName="parties"/>

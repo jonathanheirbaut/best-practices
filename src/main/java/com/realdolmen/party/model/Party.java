@@ -1,18 +1,31 @@
 package com.realdolmen.party.model;
 
+import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by JHRAU70 on 18/09/2014.
  */
+@Entity
 public class Party {
-    private String name, location, price, tickets, artist, age;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name, location, price, numberOfTickets, artist, minimumAge;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
 
-    public Party(String name, String location, String price, String tickets, String artist, String age) {
+    public Party() {
+    }
+
+    public Party(String name, String location, String price, String numberOfTickets, String artist, String minimumAge, Date startDate) {
         this.name = name;
         this.location = location;
         this.price = price;
-        this.tickets = tickets;
+        this.numberOfTickets = numberOfTickets;
         this.artist = artist;
-        this.age = age;
+        this.minimumAge = minimumAge;
+        this.startDate = startDate;
     }
 
     public String getName() {
@@ -39,12 +52,12 @@ public class Party {
         this.price = price;
     }
 
-    public String getTickets() {
-        return tickets;
+    public String getNumberOfTickets() {
+        return numberOfTickets;
     }
 
-    public void setTickets(String tickets) {
-        this.tickets = tickets;
+    public void setNumberOfTickets(String numberOfTickets) {
+        this.numberOfTickets = numberOfTickets;
     }
 
     public String getArtist() {
@@ -55,11 +68,27 @@ public class Party {
         this.artist = artist;
     }
 
-    public String getAge() {
-        return age;
+    public String getMinimumAge() {
+        return minimumAge;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setMinimumAge(String minimumAge) {
+        this.minimumAge = minimumAge;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -1,33 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-	<head>
+	<h:head>
 		<title>Parties</title>
-	</head>
-	<body>
+	</h:head>
+	<h:body>
     <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel for="firstName" value="Artist" />
-            <h:inputText id="firstName" value="#{newPartyBean.artist}" />
+        <p:panelGrid columns="2">
 
-            <h:outputLabel for="lastName" value="Location" />
-            <h:inputText id="lastName" value="#{newPartyBean.location}" />
+            <p:outputLabel for="name" value="Name" />
+            <p:inputText id="name" value="#{newPartyBean.name}" />
 
-            <h:outputLabel for="location" value="Location" />
-            <h:inputText id="location" value="#{newPartyBean.location}" />
+            <p:outputLabel for="location" value="Location" />
+            <p:inputText id="location" value="#{newPartyBean.location}" />
 
-            <h:outputLabel for="tickets" value="Tickets" />
-            <h:inputText id="tickets" value="#{newPartyBean.tickets}" />
+            <h:outputLabel for="price" value="Price" />
+            <h:inputText id="price" value="#{newPartyBean.price}" />
 
-        </h:panelGrid>
+            <h:outputLabel for="numberOfTickets" value="Tickets" />
+            <h:inputText id="numberOfTickets" value="#{newPartyBean.numberOfTickets}" />
+
+            <h:outputLabel for="artist" value="Artist" />
+            <h:inputText id="artist" value="#{newPartyBean.artist}" />
+
+            <h:outputLabel for="minimumAge" value="Minimum Age" />
+            <h:inputText id="minimumAge" value="#{newPartyBean.minimumAge}" />
+
+            <h:outputLabel value="Begin Date"/>
+            <p:calendar value="#{newPartyBean.startDate}" pattern="dd/MM/yyyy"/>
+
+        </p:panelGrid>
         <h:commandButton action="#{newPartyBean.save()}" value="Save"/>
     </h:form>
-
-
-    </body>
-	
+    </h:body>
 </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <h:outputLabel value="Username"/>
+        <h:inputText value="#{userBean.name}"/>
+
+        <h:commandButton action="#{userBean.login(userBean.name)}" value="Login"/>
+        <h:commandButton action="#{userBean.logout()}" value="Logout"/>
+    </h:form>
+
+
+    <h:form>
+        <p:dataTable id="partiesTable" var="p" value="#{partyBean.parties()}">
+            <p:column headerText="Details" style="width:16px">
+                <p:rowToggler/>
+            </p:column>
+
+
+            <p:column headerText="Artist">
+                <h:outputText value="#{p.artist}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{p.name}"/>
+            </p:column>
+
+            <p:column headerText="Location">
+                <h:outputText value="#{p.location}"/>
+            </p:column>
+
+            <p:column headerText="Tickets">
+                <h:outputText value="#{p.tickets}"/>
+            </p:column>
+
+            <p:rowExpansion>
+                <p:dataTable var="p2" value="#{p}">
+                    <p:column headerText="Min Age">
+                        <h:outputText value="#{p2.age}"/>
+                    </p:column>
+                    <p:column headerText="Price">
+                        <h:outputText value="#{p2.price}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:rowExpansion>
+
+        </p:dataTable>
+
+        <h:link value="Add party" outcome="add" rendered="#{userBean.admin}"/>
+
+        <p:commandButton value="Export to Excel" ajax="false">
+            <p:dataExporter type="xls" target="partiesTable" fileName="parties"/>
+        </p:commandButton>
+
+        <p:commandButton value="Export to CSV" ajax="false">
+            <p:dataExporter type="csv" target="partiesTable" fileName="parties"/>
+        </p:commandButton>
+
+        <p:commandButton value="Export to XML" ajax="false">
+            <p:dataExporter type="xml" target="partiesTable" fileName="parties"/>
+        </p:commandButton>
+
+
+    </h:form>
+
+
+</h:body>
+
+</html>

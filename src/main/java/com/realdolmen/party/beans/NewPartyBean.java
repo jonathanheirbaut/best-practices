@@ -2,8 +2,6 @@ package com.realdolmen.party.beans;
 
 import com.realdolmen.party.model.Party;
 import com.realdolmen.party.services.PartyService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -24,7 +22,16 @@ public class NewPartyBean {
     private Date startDate;
 
     public String save() {
-        partyService.add(new Party(name, location, price, numberOfTickets, artist, minimumAge, startDate));
+
+        partyService.add(
+                new Party.Builder()
+                        .withName(name)
+                        .withLocation(location)
+                        .withPrice(price)
+                        .withNumberOfTickets(numberOfTickets)
+                        .withArtist(artist)
+                        .withMinimumAge(minimumAge)
+                        .withStartDate(startDate).build());
         return "index";
     }
 

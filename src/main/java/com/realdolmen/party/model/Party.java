@@ -15,17 +15,21 @@ public class Party {
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    public Party() {
+    /**
+     * JPA constructor
+     */
+    protected Party() {
     }
 
-    public Party(String name, String location, String price, String numberOfTickets, String artist, String minimumAge, Date startDate) {
-        this.name = name;
-        this.location = location;
-        this.price = price;
-        this.numberOfTickets = numberOfTickets;
-        this.artist = artist;
-        this.minimumAge = minimumAge;
-        this.startDate = startDate;
+
+    private Party(Builder builder) {
+        this.name = builder.name;
+        this.location = builder.location;
+        this.price = builder.price;
+        this.numberOfTickets = builder.numberOfTickets;
+        this.artist = builder.artist;
+        this.minimumAge = builder.minimumAge;
+        this.startDate = builder.startDate;
     }
 
     public String getName() {
@@ -90,5 +94,56 @@ public class Party {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public static final class Builder {
+
+        private String name;
+        private String location;
+        private String price;
+        private String numberOfTickets;
+        private String artist;
+        private String minimumAge;
+
+        private Date startDate;
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withPrice(String price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder withNumberOfTickets(String nbOfTickets){
+            this.numberOfTickets = nbOfTickets;
+            return this;
+        }
+
+        public Builder withStartDate(Date startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public Builder withLocation(String location) {
+            this.location = location;
+            return this;
+        }
+
+        public Builder withArtist(String artist) {
+            this.artist = artist;
+            return this;
+        }
+
+        public Builder withMinimumAge(String minimumAge) {
+            this.minimumAge = minimumAge;
+            return this;
+        }
+
+        public Party build() {
+            return new Party(this);
+        }
     }
 }

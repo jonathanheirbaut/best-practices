@@ -13,4 +13,6 @@ public interface PartyRepository {
     Party add(Party party);
     List<Party> getParties();
     void deleteParty(Party party);
+
+    List<Party> getPartiesByLocation(String location);
 }

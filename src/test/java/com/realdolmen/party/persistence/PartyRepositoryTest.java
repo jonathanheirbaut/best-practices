@@ -1,6 +1,8 @@
 package com.realdolmen.party.persistence;
 
+import com.realdolmen.party.common.AbstractArquillianTestCase;
 import com.realdolmen.party.model.Party;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +18,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by JHRAU70 on 18/09/2014.
  */
-public class PartyRepositoryTest {
-
+@RunWith(Arquillian.class)
+public class PartyRepositoryTest extends AbstractArquillianTestCase {
     @Inject
     private PartyRepository partyRepository;
 

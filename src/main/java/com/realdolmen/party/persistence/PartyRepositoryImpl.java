@@ -34,17 +34,17 @@ public class PartyRepositoryImpl implements Serializable, PartyRepository{
     @PostConstruct
     public void init(){
         parties = new ArrayList<>();
-        parties.add(new Party("1", "loc1", "1","1","1","1", new Date()));
-        parties.add(new Party("2", "loc2", "2","2","2","2", new Date()));
-        parties.add(new Party("2", "loc3", "3","3","3","3", new Date()));
+        parties.saveOrUpdate(new Party("1", "loc1", "1","1","1","1", new Date()));
+        parties.saveOrUpdate(new Party("2", "loc2", "2","2","2","2", new Date()));
+        parties.saveOrUpdate(new Party("2", "loc3", "3","3","3","3", new Date()));
     }
 */
 
 
 /*    @Override
-    public void add(Party party) {
+    public void saveOrUpdate(Party party) {
         logger.info("Party " + party.getName() + " is saved");
-        parties.add(party);
+        parties.saveOrUpdate(party);
     }
 
     @Override
@@ -66,5 +66,10 @@ public class PartyRepositoryImpl implements Serializable, PartyRepository{
     @Override
     public void deleteParty(Party party){
        entityManager.remove(entityManager.merge(party));
+    }
+
+    @Override
+    public List<Party> getPartiesByLocation(String location) {
+        return entityManager.createQuery("select p from Party p where p.location = " + location, Party.class).getResultList();
     }
 }

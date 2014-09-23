@@ -1,8 +1,7 @@
-package com.realdolmen.party.beans;
+package com.realdolmen.party.controller;
 
 import com.realdolmen.party.model.Party;
 import com.realdolmen.party.services.PartyService;
-import com.realdolmen.party.services.PartyServiceImpl;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
